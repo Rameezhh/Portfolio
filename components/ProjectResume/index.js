@@ -4,7 +4,8 @@ const ProjectResume = ({ dates, type, position, bullets }) => {
   const [bulletsLocal, setBulletsLocal] = React.useState(bullets.split(","));
 
   return (
-    <div className="mt-5 w-full flex mob:flex-col desktop:flex-row justify-between">
+    // tablet:flex-col
+    <div className="mt-5 w-full tablet:w-4/5 flex  desktop:flex-row justify-around">
       <div className="text-lg w-2/5">
         <h2>{dates}</h2>
         <h3 className="text-sm opacity-50">{type}</h3>

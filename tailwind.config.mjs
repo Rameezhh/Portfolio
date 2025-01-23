@@ -19,6 +19,9 @@ export default {
         btnBG: "var(--background)",
         btnFG: "var(--foreground)",
       },
+      viewToggle: {
+        toggleImg: "var(--viewToogle)",
+      },
     },
   },
   plugins: [],

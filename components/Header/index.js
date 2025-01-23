@@ -35,7 +35,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               </h1>
 
               <div className="flex items-center">
-                {data.darkMode && (
+                {mounted && theme && data.darkMode && (
                   <Button
                     onClick={() =>
                       // setTheme(theme === "dark" ? "light" : "dark")
@@ -46,24 +46,27 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                       className="h-6"
                       src={`/images/${
                         theme === "dark" ? "sun.svg" : "moon.svg"
+                        // `{toggleImg}`
                       }`}
                     ></img>
                   </Button>
                 )}
 
                 <Popover.Button>
-                  <img
-                    className="h-5"
-                    src={`/images/${
-                      !open
-                        ? theme === "dark"
-                          ? "menu-white.svg"
-                          : "menu.svg"
-                        : theme === "light"
-                        ? "cancel.svg"
-                        : "cancel-white.svg"
-                    }`}
-                  ></img>
+                  {mounted && theme && data.darkMode && (
+                    <img
+                      className="h-5"
+                      src={`/images/${
+                        !open
+                          ? theme === "dark"
+                            ? "menu-white.svg"
+                            : "menu.svg"
+                          : theme === "light"
+                          ? "cancel.svg"
+                          : "cancel-white.svg"
+                      }`}
+                    ></img>
+                  )}
                 </Popover.Button>
               </div>
             </div>
@@ -80,11 +83,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                     <Button onClick={() => router.push("/blog")}>Blog</Button>
                   )} */}
                   {showResume && (
-                    <Button
-                      onClick={() =>
-                        window.open("mailto:hello@chetanverma.com")
-                      }
-                    >
+                    <Button onClick={() => router.push("/resume")}>
                       Resume
                     </Button>
                   )}

@@ -14,11 +14,13 @@
   /* Your default theme */
   --background: black;
   --foreground: white;
+  --viewToogle: "moon.svg";
 }
 
 [data-theme="dark"] {
   --background: white;
   --foreground: black;
+  --viewToogle: "sun.svg";
 }
 
 body {
