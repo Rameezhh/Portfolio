@@ -38,9 +38,10 @@ const Blog = ({ posts }) => {
       }).then(() => {
         router.reload(window.location.pathname);
       });
-    } else {
-      alert("This thing only works in development mode.");
     }
+    // else {
+    //   alert("This thing only works in development mode.");
+    // }
   };
 
   const deleteBlog = (slug) => {
@@ -56,9 +57,10 @@ const Blog = ({ posts }) => {
       }).then(() => {
         router.reload(window.location.pathname);
       });
-    } else {
-      alert("This thing only works in development mode.");
     }
+    // else {
+    //   alert("This thing only works in development mode.");
+    // }
   };
   return (
     showBlog.current && (

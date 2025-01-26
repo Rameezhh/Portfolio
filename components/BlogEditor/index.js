@@ -36,9 +36,10 @@ const BlogEditor = ({ post, close, refresh }) => {
           refresh();
         }
       });
-    } else {
-      alert("This thing only works in development mode.");
     }
+    // else {
+    //   alert("This thing only works in development mode.");
+    // }
   };
 
   return (

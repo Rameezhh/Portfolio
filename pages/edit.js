@@ -23,18 +23,75 @@ const Edit = () => {
   };
 
   const key = process.env.NEXT_PUBLIC_SECRET_KEY;
-  const saveData = () => {
-    if (process.env.NODE_ENV === "development") {
-      fetch("/api/portfolio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-    } else {
-      alert("This thing only works in development mode.");
+  // const saveData = () => {
+  //   if (process.env.NODE_ENV === "development") {
+  //     fetch("/api/portfolio", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //   } else {
+  //     alert("This thing only works in development mode.");
+  //   }
+  // };
+  const saveData = async () => {
+    // if (process.env.NODE_ENV === "development") {
+    try {
+      // Save data to your backend API first
+      // await fetch("/api/portfolio", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+
+      // GitHub Repository details
+      const githubToken = process.env.NEXT_PUBLIC_GIT_TOKEN; // Put your personal GitHub token here
+      const repoOwner = "Rameezhh"; // Your GitHub username
+      const repoName = "Portfolio"; // Your GitHub repository name
+      const filePath = "data/portfolio.json"; // Path to the file to update in the repository
+
+      // Fetch the current file from GitHub
+      const response = await fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
+        {
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+          },
+        }
+      );
+
+      const fileContent = await response.json();
+      const sha = fileContent.sha; // SHA of the existing file
+
+      // Commit the updated portfolio.json back to GitHub
+      const updateResponse = await fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: "Update portfolio.json",
+            content: Buffer.from(JSON.stringify(data)).toString("base64"),
+            sha: sha,
+          }),
+        }
+      );
+
+      const updateResult = await updateResponse.json();
+      console.log("GitHub update result:", updateResult);
+    } catch (error) {
+      console.error("Error saving data to GitHub:", error);
     }
+    // } else {
+    //   alert("This thing only works in development mode.");
+    // }
   };
 
   // Project Handler
