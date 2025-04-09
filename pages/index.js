@@ -113,7 +113,7 @@ export default function Home() {
         <div className="mt-20 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
           {/* <h1 className="text-2xl text-bold">Work.</h1> */}
           <h1 className="my-8 mb-0 tablet:m-8 ta mt-[30px] text-3xl uppercase poppins-bold  opacity-80">
-            Projects.
+            Projects
           </h1>
 
           {/* <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-2"> */}
